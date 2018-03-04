@@ -1,0 +1,66 @@
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m"
+	controllerName="recaudia.controller.Main"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page title="Recaudia/Login" id="pageLogin">
+		<content>
+		   
+			<Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+				<FlexBox
+					height="100px"
+					alignItems="Center"
+					justifyContent="Center">
+					<items>
+						  <f:SimpleForm
+                       id="formAssigned"
+                       editable="true"
+                       labelSpanL="5"
+                       labelSpanM="4"
+                       labelSpanS="4"
+                       emptySpanL="0"
+                       emptySpanM="0"
+                       emptySpanS="0"
+                       columnsL="2"
+                       columnsM="2"
+                       maxContainerCols="2"
+                       layout="ResponsiveGridLayout"
+                       width="100%"
+                       busy="false">
+
+                   <Label text="Usuario"/>
+                   <Input id="user" value="{mdlogin>/user}" />
+
+                   <Label text="Email"/>
+                   <Input id="email" value="{mdlogin>/email}" />
+
+                   <Label text="Password"/>
+                   <Input id="password" type="Password" value="{mdlogin>/password}"  />
+
+                   <Label text=""/>
+	                <Button
+  						text="Ingresar"
+  						press="onLogin"
+  						ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+              		</Button>
+
+                     
+                 </f:SimpleForm>
+
+
+
+
+					</items>
+				</FlexBox>
+
+			</Panel>
+
+
+
+		</content>
+		
+	</Page>
+</mvc:View>

@@ -1,0 +1,85 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:core="sap.ui.core">
+	<Dialog title="Nueva Suscripcion"
+			class="sapUiPopupWithPadding"
+			confirm="onCancelCopy"
+			cancel="onCancelCopy"
+			busy="false">
+
+			<f:SimpleForm
+						id="formSubscription"
+						editable="true"
+						labelSpanL="5"
+						labelSpanM="4"
+						labelSpanS="4"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsL="2"
+		        columnsM="2"
+						maxContainerCols="2"
+						layout="ResponsiveGridLayout"
+						width="100%"
+						busy="false">
+
+						<Label text="Donante"/>
+						<Select items="{path:'mddonor>/records'}"
+								change="updateDonorModel"
+								selectedKey="{mdsubscription>/donor_id}"
+								id="donorSelect">
+							<core:Item text="{mddonor>name} {mddonor>last_name}" key="{mddonor>donor_id}"/>
+						</Select>
+
+						<Label text="Monto"/>
+						<Input id="amount" 
+							   value="{mdsubscription>/amount}" 
+							   valueState="{mdsubscription>/amount_state}"
+		 					   valueStateText="{mdsubscription>/amount_stateText}"/>
+
+		 				<Label text="Tipo de Pago"/>
+						<Select selectedKey="{mdsubscription>/type_card}"
+								id="typeCardSelect">
+							<core:Item text="Débito" key="Débito"/>
+							<core:Item text="Crédito" key="Crédito"/>
+						</Select>
+
+						<Label text="Tipo de Tarjeta"/>
+						<Select selectedKey="{mdsubscription>/brand_card}"
+								id="brandCardSelect">
+							<core:Item text="Visa" key="Visa"/>
+							<core:Item text="MasterCard" key="MasterCard"/>
+							<core:Item text="AMEX" key="AMEX"/>
+						</Select>
+
+						<Label text="Tarjeta"/>
+						<Input id="last_digits"
+							   placeholder="Ultimos 4 digitos" 
+							   maxLength="4"
+							   value="{mdsubscription>/last_digits}"
+							   valueState="{mdsubscription>/last_digits_state}"
+		 					   valueStateText="{mdsubscription>/last_digits_stateText}"/>
+
+						<Label text="Fecha"/>
+						<DatePicker id="init_date" 
+									valueFormat="dd-MM-yyyy" 
+									value="{mdsubscription>/init_date}" 
+									change="handleChange" 
+									placeholder="Inicio de Suscripcion"
+									valueState="{mdsubscription>/init_date_state}"
+		 					   		valueStateText="{mdsubscription>/init_date_stateText}"/>
+
+					</f:SimpleForm>
+
+
+			<buttons width="auto" class="sapUiNoMarginBegin sapUiNoMarginEnd">
+					<Button text="Crear" type="Accept" press="onSubscriptionSaveDialog" visible="{mdsubscription>/subscriptionSaveDialog}"/>
+					<Button text="Guardar" type="Accept" press="onSubscriptionUpdateDialog" visible="{mdsubscription>/subscriptionUpdateDialog}"/>
+					<Button text="Cancelar" type="Reject" press="onSubscriptionCloseDialog" />
+			</buttons>
+			
+
+	</Dialog>
+</core:FragmentDefinition>

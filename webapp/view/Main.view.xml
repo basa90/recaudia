@@ -1,0 +1,46 @@
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	controllerName="recaudia.controller.Main"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page title="Recaudia" id="page">
+		<headerContent>
+			<Button icon="sap-icon://undo" tooltip="Salir" text="Salir" press="goToLaunchpad" />
+		</headerContent>
+		<content>
+		    <IconTabBar
+		    	id="tabBar"
+		    	selectedKey="scenarioFilter"
+		    	expandable="false"
+		    	applyContentPadding="false"
+		    	select="onTabSelection">
+		        <items>
+		            <IconTabFilter id="donorTab" key="KdonorTab" text="Donantes" icon="sap-icon://account">
+		                <content>
+		                	<core:Fragment fragmentName="recaudia.view.donor.donorTable" type="XML"/>
+		                </content>
+		            </IconTabFilter>
+		            <IconTabSeparator id="__separator1" icon="sap-icon://media-pause"/>
+		            <IconTabFilter id="suscriptionTab" key="ksuscriptionTab" text="Suscripciones" icon="sap-icon://money-bills">
+		                <content>
+		                	<core:Fragment fragmentName="recaudia.view.suscription.suscriptionTable" type="XML"/>
+		                </content>
+		            </IconTabFilter>
+		        </items>
+		    </IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="NewSuscriptionBtn" text="Nuevo" type="Accept" press="onNewSuscription"  visible="{util>/suscriptionSaveBtn}"/>
+					<Button id="NewDonorBtn" text="Nuevo" type="Accept" press="onNewDonor" visible="{util>/donorSaveBtn}"/>
+					<Button id="ExportDonorBtn" text="Export" type="Accept" press="onDataExport" visible="{util>/donorSaveBtn}"/>
+					<Button id="DeleteDonorBtn" text="Eliminar" type="Reject" press="onDeleteDonor" visible="{util>/donorDeleteBtn}"/>
+					<Button id="DeleteSubscriptionBtn" text="Eliminar" type="Reject" press="onDeletesubscription" visible="{util>/subscriptionDeleteBtn}"/>
+			</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

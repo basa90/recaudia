@@ -1,0 +1,88 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:core="sap.ui.core">
+	<Dialog title="Nuevo Donante"
+			class="sapUiPopupWithPadding"
+			confirm="onCancelCopy"
+			cancel="onCancelCopy"
+			busy="false">
+
+			<f:SimpleForm
+						id="formDonor"
+						editable="true"
+						labelSpanL="5"
+						labelSpanM="4"
+						labelSpanS="4"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsL="2"
+		        columnsM="2"
+						maxContainerCols="2"
+						layout="ResponsiveGridLayout"
+						width="100%"
+						busy="false">
+
+						<Label text="Nombre"/>
+						<Input id="name" 
+							   value="{mddonor>/name}" 
+							   valueState="{mddonor>/name_state}"
+		 					   valueStateText="{mddonor>/name_stateText}"/>
+
+						<Label text="Apellido"/>
+						<Input id="last_name" 
+							   value="{mddonor>/last_name}"
+							   valueState="{mddonor>/last_name_state}"
+		 					   valueStateText="{mddonor>/last_name_stateText}"/>
+
+						<Label text="Sexo"/>
+						<Select selectedKey="{mddonor>/gender}"
+								id="genderSelect">
+							<core:Item text="Masculino" key="Male"/>
+							<core:Item text="Femenino" key="Female"/>
+						</Select>
+
+						<Label text="Fecha"/>
+						<DatePicker id="birthdate_date" 
+									valueFormat="dd-MM-yyyy" 
+									value="{mddonor>/birthdate_date}" 
+									change="handleChange" 
+									placeholder="Nacimiento"
+									valueState="{mddonor>/birthdate_state}"
+		 					   		valueStateText="{mddonor>/birthdate_stateText}"/>
+
+						<Label text="Email"/>
+						<Input id="email" 
+							   value="{mddonor>/email}" 
+							   valueState="{mddonor>/email_state}"
+		 					   valueStateText="{mddonor>/email_stateText}" />
+
+						<Label text="Telefono"/>
+						<Input id="phone" 
+								value="{mddonor>/phone}" 
+								maxLength="10"
+								valueState="{mddonor>/phone_state}"
+		 					   	valueStateText="{mddonor>/phone_stateText}" />
+
+						<Label text="Cliente"/>
+						<Select items="{path:'mdclient>/records'}"
+								change="updateClientModel"
+								selectedKey="{mddonor>/client_id}"
+								id="clientSelect">
+							<core:Item text="{mdclient>name}" key="{mdclient>client_id}"/>
+						</Select>
+
+					</f:SimpleForm>
+
+
+			<buttons width="auto" class="sapUiNoMarginBegin sapUiNoMarginEnd">
+					<Button text="Crear" type="Accept" press="onDonorSaveDialog" visible="{mddonor>/donorSaveDialog}"/>
+					<Button text="Guardar" type="Accept" press="onDonorUpdateDialog" visible="{mddonor>/donorUpdateDialog}"/>
+					<Button text="Cancelar" type="Reject" press="onDonorCloseDialog" />
+			</buttons>
+			
+
+	</Dialog>
+</core:FragmentDefinition>

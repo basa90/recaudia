@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+
+  <Toolbar xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" id="donorToolbar">
+    <content>
+      <SearchField id="donorSearchField" liveChange="onDonorSearch" placeholder="Buscar donantes por email" width="100%"/>
+    </content>
+  </Toolbar>
+
+  <Table id="donorTable"
+         mode="SingleSelect"
+         selectionChange="handleDeleteDonor"
+         growing="true"
+         growingThreshold="5"
+         alternateRowColors="true"
+         items="{mddonor>/records}">
+
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Nombre" />
+      </Column>
+			<Column hAlign="Center">
+				<Text text="Apellido" />
+			</Column>
+      <Column hAlign="Center">
+        <Text text="Email" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Fecha de Cumpleaños" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Teléfono" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Sexo" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Cliente" />
+      </Column>
+
+    </columns>
+    <items>
+      <ColumnListItem type="Detail"  detailPress="onViewDonor">
+        <cells>
+					<text textAlign="Left" text="{mddonor>name}"/>
+					<text textAlign="Left" text="{mddonor>last_name}"/>
+					<text textAlign="Left" text="{mddonor>email}"/>
+          <text textAlign="Left" text="{mddonor>birthdate}"/>
+          <text textAlign="Left" text="{mddonor>phone}"/>
+          <text textAlign="Left" text="{mddonor>gender_name}"/>
+          <text textAlign="Left" text="{mddonor>name_client}"/>
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</core:FragmentDefinition>

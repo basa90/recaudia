@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+
+    <Toolbar xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" id="subscriptionToolbar">
+    <content>
+      <SearchField id="subscriptionSearchField" liveChange="onSubscriptionSearch" placeholder="Buscar por donante" width="100%"/>
+    </content>
+  </Toolbar>
+
+  <Table id="subscriptionTable"
+         mode="SingleSelect"
+         selectionChange="handleDeleteSubscription"
+         growing="true"
+         growingThreshold="5"
+         alternateRowColors="true"
+         items="{path:'mdsubscription>/records'}">
+
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Donante" />
+      </Column>
+			<Column hAlign="Center">
+				<Text text="Monto" />
+			</Column>
+      <Column hAlign="Center">
+        <Text text="Tipo de Pago" />
+      </Column>
+
+      <Column hAlign="Center">
+        <Text text="Tarjeta" />
+      </Column>
+
+      <Column hAlign="Center">
+        <Text text="Tarjeta (Último 4 Dígitos)" />
+      </Column>
+
+      <Column hAlign="Center">
+        <Text text="Inicio de pago" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem type="Detail"  detailPress="onViewSubscription">
+        <cells>
+					<text textAlign="Left" text="{mdsubscription>donor_name}"/>
+					<ObjectNumber
+							number="{path:'mdsubscription>amount',formatter: '.formatter.formatMiles' }"
+							unit="Pesos" />
+          <text textAlign="Left" text="{mdsubscription>type_card}"/>
+          <text textAlign="Left" text="{mdsubscription>brand_card}"/>
+          <text textAlign="Left" text="{mdsubscription>last_digits}"/>
+          <text textAlign="Left" text="{mdsubscription>init_date}"/>
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</core:FragmentDefinition>
