@@ -7,6 +7,9 @@ Frontend
 * Debe clonar el repositorio en la carpeta App.
 * El SDK de OpenUI5 ya se encuentra en el backend recaudia-api
 
+## Uso
+
+La aplicacion corre en la direccion: http://localhost:3000/Apps/recaudia/webapp/
 
 ## Implementado con
 
